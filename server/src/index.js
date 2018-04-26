@@ -3,13 +3,13 @@ var app = express();
 var router = express.Router(); 
 var bodyParser = require('body-parser'); 
 var cors = require('cors');
-
+  
 var bears = [
     { id: '1', name: 'MoMo' },
     { id: '2', name: 'BuBu' }
-];
-
-outer.route('/bears') 
+]; 
+  
+router.route('/bears') 
     .get(function(req, res) {
         res.send(bears);
     })
@@ -24,6 +24,7 @@ router.route('/bears/:id')
         bears = bears.filter(b => b.id !== req.params.id)
         res.json({ message: 'Bear deleted!' }); 
     }) 
+
 app.use(cors());
 // all of our routes will be prefixed with /api 
 app.use('/api', bodyParser.json(), router); 
